@@ -37,6 +37,7 @@ This is a frontend assignment project for a Frontend Developer Intern role. It i
         - cd frontend_assignment/frontend 
 ### 3. Install Project Dependencies
     - npm install 
+    - npm install axios recharts
 
 ### 4. Run the Development Server
     - npm start
