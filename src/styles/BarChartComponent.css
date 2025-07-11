@@ -1,0 +1,25 @@
+.bar-chart-window {
+  background-color: white;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Dark mode specific styles for the chart title */
+body.dark .chart-title {
+   font-family: 'Figtree', sans-serif;
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 100;
+}
+
+body.dark .bar-chart-window {
+  background-color: #1e1e1e;
+}
+
+.bar-chart-container {
+  margin-top: 1.5rem;
+  color:white
+}

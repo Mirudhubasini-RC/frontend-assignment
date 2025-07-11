@@ -1,49 +1,150 @@
-/* Wrapper to stretch full available space under topbar/next to sidebar */
-.dashboard-wrapper {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center; /* Optional: center horizontally */
-  align-items: flex-start; /* Align to top */
+/* src/styles/Dashboard.css */
+
+/* Import Figtree font from Google Fonts - Keep this here as it's a global font import */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700&display=swap');
+
+
+/* Define dashboard specific variables within :root or .dark/.light classes */
+:root {
+  --dashboard-bg-light: white;
+  --dashboard-border-light: #2d72e1; /* Blue glow color */
+  --dashboard-text-light: black;
+  /* Add or ensure --body-bg-color is defined here if not in a global stylesheet */
+  /* For matching the topbar/sidebar background (often defined in a global CSS or sidebar.css) */
+  --body-bg-color-dark: #030303; /* Assuming your sidebar/topbar dark background is this */
 }
 
-/* Optional compact class if used elsewhere */
-.dashboard-wrapper.compact {
-  padding: 0;
+.dark {
+  /* Change --dashboard-bg-dark to match your sidebar/topbar dark background */
+  --dashboard-bg-dark: var(--body-bg-color-dark, #1a1a1a); /* Use the same dark background as body/sidebar/topbar */
+  --dashboard-border-dark: #a0aec0; /* Silver blue color (example: slate-400 from Tailwind) */
+  --dashboard-text-dark: white;
 }
 
-/* Outer container with glow border and background */
+/* The main container for the Dashboard page itself */
 .dashboard-container {
   margin: 0;
   width: 100%;
+  min-height: calc(100% - 0.4rem); /* Based on App.tsx padding: '0.2rem' */
   height: 100%;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 1rem; /* Reduced padding from 1.5rem to 1rem for overall tighter spacing */
   box-sizing: border-box;
-  background-color: white;
-  border: 2px solid #2d72e1;
-  outline: 2px solid rgba(45, 114, 225, 0.6); /* Light theme glow */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+
+  background-color: var(--dashboard-bg-light);
+  color: var(--dashboard-text-light);
+  border: 1px solid var(--dashboard-border-light);
+  box-shadow: 0 0 15px 0px rgba(45, 114, 225, 0.5);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
 }
 
-/* Dark mode support */
-body.dark .dashboard-container {
-  background-color: #1e1e1e;
-  border-color: #7aa5d2;
-  outline-color: rgba(122, 165, 210, 0.5); /* Dark theme glow */
+.dashboard-container.dark {
+  background-color: var(--dashboard-bg-dark); /* This will now use #1a1a1a */
+  color: var(--dashboard-text-dark);
+  border: 1px solid var(--dashboard-border-dark);
+  box-shadow: 0 0 10px 0px rgba(160, 174, 192, 0.3);
 }
 
-/* Title styling */
+/* Title styling for the main dashboard page */
 .dashboard-title {
   font-size: 1.5rem;
   font-weight: 600;
   color: black;
+  margin-bottom: 1rem; /* Reduced from 1.5rem to bring content closer to title */
 }
 
 body.dark .dashboard-title {
   color: white;
+}
+
+/* NEW CLASS: Styles for the main flex container that holds the chart and form sections */
+/* These styles were previously inline in Dashboard.tsx */
+.dashboard-content-flex-container {
+  display: flex;
+  gap: 10px; /* Reduced gap to 10px */
+  margin-top: 10px; /* Reduced from 20px to bring content closer to dashboard title */
+  flex-wrap: wrap;
+  height: calc(100% - 70px); /* Adjust height as needed */
+}
+
+
+/* Styles for the chart window and form area */
+.chart-wrapper-left {
+  flex: 2;
+  /* Reduced min-width to allow the chart wrapper to be smaller */
+  min-width: 280px; /* Adjusted from 300px */
+  height: auto;
+  min-height: 250px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  /* Reduced padding to shrink the outer window size */
+  padding: 0.5rem; /* Adjusted from 1rem */
+
+  /* This will now also use #1a1a1a in dark mode */
+  background-color: var(--dashboard-bg-light);
+  border: 1px solid var(--dashboard-border-light);
+  box-shadow: 0 0 15px 0px rgba(45, 114, 225, 0.5);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-container.dark .chart-wrapper-left {
+  background-color: var(--dashboard-bg-dark); /* This will now use #1a1a1a */
+  border: 1px solid var(--dashboard-border-dark);
+  box-shadow: 0 0 10px 0px rgba(93, 100, 109, 0.3);
+}
+
+.form-field-area {
+  flex: 1;
+  min-width: 250px;
+  height: auto;
+  min-height: 250px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 1rem;
+
+  /* This will also use #1a1a1a in dark mode */
+  background-color: var(--dashboard-bg-light);
+  border: 1px solid var(--dashboard-border-light);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-container.dark .form-field-area {
+  background-color: var(--dashboard-bg-dark); /* This will now use #1a1a1a */
+  border: 1px solid var(--dashboard-border-dark);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* NEW CLASS: Styles for the input field in the form section */
+.form-input-field {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  width: 100%;
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+
+/* Media Queries for smaller screens */
+@media (max-width: 1024px) {
+  .chart-wrapper-left,
+  .form-field-area {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  .dashboard-container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 0.75rem;
+  }
+  .chart-wrapper-left, .form-field-area {
+    min-width: unset;
+  }
 }

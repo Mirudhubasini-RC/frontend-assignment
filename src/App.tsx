@@ -37,9 +37,9 @@ const AppContent: React.FC<{
         />
         <div style={{ padding: '0.2rem' }}>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/" element={<Dashboard darkMode={darkMode}/>} />
+            <Route path="/users" element={<Users darkMode={darkMode} />} />
+            <Route path="/settings" element={<Settings darkMode={darkMode} />} />
           </Routes>
         </div>
       </div>
