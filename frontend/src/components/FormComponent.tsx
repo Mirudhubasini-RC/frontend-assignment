@@ -8,75 +8,78 @@ interface FormComponentProps {
 }
 
 const FormComponent: React.FC<FormComponentProps> = ({ darkMode }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [role, setRole] = useState(''); // 'Admin' or 'User'
+  const [apiName, setApiName] = useState('');
+  const [accessLevel, setAccessLevel] = useState('');
+  const [justification, setJustification] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Basic validation before submission
-    if (!name || !email || !role) {
+    if (!apiName || !accessLevel || !justification) {
       setError('All fields are required.');
       setMessage('');
       return;
     }
 
-    if (!['Admin', 'User'].includes(role)) {
-      setError('Role must be either Admin or User.');
-      setMessage('');
-      return;
-    }
-
-    const formData = { name, email, role };
+    const formData = {
+      apiName,
+      accessLevel,
+      justification,
+    };
 
     try {
       await submitUserData(formData);
-      setMessage('User created successfully!');
+      setMessage('API Access Request submitted successfully!');
       setError('');
-      setName('');
-      setEmail('');
-      setRole('');
+      setApiName('');
+      setAccessLevel('');
+      setJustification('');
     } catch (err: any) {
       console.error('Submission error:', err);
       setMessage('');
       if (err.response?.data?.message) {
-        setError(err.response.data.message); // Server-sent message
+        setError(err.response.data.message);
       } else {
-        setError('Failed to create user. Please try again later.');
+        setError('Submission failed. Please try again later.');
       }
     }
   };
 
   return (
     <div className={`form-container ${darkMode ? 'dark' : 'light'}`}>
-      <h3>Create New User</h3>
+      <h3>API Access Request</h3>
       <form onSubmit={handleSubmit} className="form-fields">
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
         <select
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
+          value={apiName}
+          onChange={(e) => setApiName(e.target.value)}
           required
         >
-          <option value="">Select Role</option>
-          <option value="Admin">Admin</option>
-          <option value="User">User</option>
+          <option value="">Select API</option>
+          <option value="Sales Analytics">Sales Analytics</option>
+          <option value="User Engagement">User Engagement</option>
+          <option value="Customer Feedback">Customer Feedback</option>
         </select>
+
+        <select
+          value={accessLevel}
+          onChange={(e) => setAccessLevel(e.target.value)}
+          required
+        >
+          <option value="">Select Access Level</option>
+          <option value="Read">Read</option>
+          <option value="Write">Write</option>
+          <option value="Admin">Admin</option>
+        </select>
+
+        <textarea
+          placeholder="Justification"
+          value={justification}
+          onChange={(e) => setJustification(e.target.value)}
+          rows={4}
+          required
+        />
 
         <button type="submit">Submit</button>
       </form>

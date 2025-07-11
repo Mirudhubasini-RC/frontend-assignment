@@ -71,7 +71,7 @@
 .chart-wrapper-left {
   flex: 1;
   min-width: 400px;
-  max-width: 750px;
+  max-width: 900px;
   height: 400px;
   box-sizing: border-box;
   border-radius: 12px;

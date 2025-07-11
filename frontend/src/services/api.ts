@@ -7,6 +7,10 @@ export const fetchYearlyUsage = () => {
   return axios.get(`${API_BASE}/barchart/api-usage`);
 };
 
-export const submitUserData = (data: { name: string; email: string; role: string }) => {
-  return axios.post(`${API_BASE}/users`, data);
+export const submitUserData = (data: {
+  apiName: string;
+  accessLevel: string;
+  justification: string;
+}) => {
+  return axios.post(`${API_BASE}/request_api`, data);
 };

@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+  Legend,
 } from 'recharts';
 import { fetchYearlyUsage } from '../services/api';
 import '../styles/BarChartComponent.css';
 
-// Define props for BarChartComponent
 interface BarChartComponentProps {
-  darkMode: boolean; // Add darkMode prop here
+  darkMode: boolean;
 }
 
 type UsageData = {
@@ -17,109 +23,133 @@ type UsageData = {
   data: number[];
 };
 
-// Update the component to accept BarChartComponentProps
+// Custom glowing bar shape
+const CustomActiveBar = (props: any) => {
+  const { x, y, width, height, fill, darkMode } = props;
+
+  return (
+    <g>
+      <rect
+        x={x}
+        y={y}
+        width={width}
+        height={height}
+        rx={4}
+        ry={4}
+        fill={fill}
+        stroke="#4a90e2"
+        strokeWidth={2}
+        style={{
+          filter: darkMode
+            ? 'drop-shadow(0 0 8px rgba(74, 144, 226, 0.5))'
+            : 'drop-shadow(0 0 6px rgba(45, 114, 225, 0.35))',
+        }}
+      />
+    </g>
+  );
+};
+
 const BarChartComponent: React.FC<BarChartComponentProps> = ({ darkMode }) => {
   const [chartData, setChartData] = useState<{ name: string; value: number }[]>([]);
 
-  const fetchData = async () => {
-    try {
-      const res = await fetchYearlyUsage();
-      console.log("API Response:", res.data);
-
-      const yearEntry = res.data.find((d: UsageData) => d.type === 'year');
-      console.log("Found Year Entry:", yearEntry);
-
-      if (yearEntry) {
-        const transformed = yearEntry.label.map((name: string, i: number) => ({
-          name,
-          value: yearEntry.data[i],
-        }));
-        console.log("Chart Data:", transformed);
-        setChartData(transformed);
-      }
-    } catch (err) {
-      console.error("Error fetching data:", err);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetchYearlyUsage();
+        const yearEntry = res.data.find((d: UsageData) => d.type === 'year');
+        if (yearEntry) {
+          const transformed = yearEntry.label.map((name: string, i: number) => ({
+            name,
+            value: yearEntry.data[i],
+          }));
+          setChartData(transformed);
+        }
+      } catch (err) {
+        console.error('Error fetching data:', err);
+      }
+    };
+
     fetchData();
   }, []);
 
-  // Custom formatter for legend items
   const legendFormatter = (value: string) => {
-    const color = darkMode ? 'white' : 'black'; // Determine color based on theme
-    return <span style={{ color }}>{value}</span>;
+    return <span style={{ color: darkMode ? 'white' : 'black' }}>{value}</span>;
   };
 
-  // Custom style for axis labels based on dark mode
   const axisLabelStyle = {
-    fill: darkMode ? 'white' : 'black', // Text color for the label
-    fontSize: '14px', // Adjust font size as needed
-    fontWeight: 'bold', // Make it bold if desired
+    fill: darkMode ? 'white' : 'black',
+    fontSize: '14px',
+    fontWeight: 'bold',
   };
-
 
   return (
-    // The bar-chart-container and bar-chart-window classes should be in your CSS files
     <div className="bar-chart-container">
-      {/* 'chart-title' class applied, styles defined in Dashboard.css */}
       <h3 className="chart-title">Yearly API Usage</h3>
-
-      
-        {/* Reduced ResponsiveContainer height slightly to reduce overall vertical space */}
-        {/* Adjusted height to 320 (from 350) */}
-        <ResponsiveContainer width="100%" height={320}>
-          <BarChart data={chartData}
-            // Significantly reduced left margin to pull chart closer to left edge
-            // Reduced bottom margin to pull legend closer to X-axis
-            margin={{ top: 20, right: 30, left: 40, bottom: 40 }} // Reduced left to 40, bottom to 40
-            >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis
-              dataKey="name"
-              label={{
-                value: 'Months', // X-axis label
-                position: 'bottom', // Position of the label
-                offset: 20, // Offset from the axis line (adjust as needed)
-                style: axisLabelStyle, // Apply custom style
-              }}
-              padding={{ left: 20, right: 20 }}
-            />
-            <YAxis
-              label={{
-                value: 'API Call Usage', // Y-axis label
-                angle: -90, // Rotate label vertically
-                position: 'left', // Crucially, use 'left' or 'outerLeft'
-                // Adjusted offset for Y-axis label. May need fine-tuning after margin change.
-                offset: 10, // Adjusted to 10 (from 20) as left margin is smaller
-                style: axisLabelStyle, // Apply custom style
-              }}
-            />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: darkMode ? '#2c2c2c' : '#ffffff',
-                border: darkMode ? '1px solid #777' : '1px solid #ccc',
-                color: darkMode ? '#fff' : '#000',
-              }}
-              itemStyle={{
-                color: darkMode ? '#fff' : '#000',
-              }}
-              labelStyle={{
-                color: darkMode ? '#fff' : '#000',
-              }}
-            />
-            <Legend
-              verticalAlign="bottom"
-              align="left"
-              wrapperStyle={{ paddingTop: '10px', paddingLeft: '20px' }}
-              formatter={legendFormatter}
-            />
-            <Bar dataKey="value" fill="#2d72e1" name="No. of API Calls" barSize={30} />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-
+      <ResponsiveContainer width="100%" height={320}>
+        <BarChart
+          data={chartData}
+          margin={{ top: 20, right: 30, left: 40, bottom: 40 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis
+            dataKey="name"
+            label={{
+              value: 'Months',
+              position: 'bottom',
+              offset: 20,
+              style: axisLabelStyle,
+            }}
+            padding={{ left: 20, right: 20 }}
+          />
+          <YAxis
+            label={{
+              value: 'API Call Usage',
+              angle: -90,
+              position: 'left',
+              offset: 10,
+              style: axisLabelStyle,
+            }}
+          />
+          <Tooltip
+            cursor={{
+              fill: darkMode
+                ? 'rgba(255, 255, 255, 0.1)'
+                : 'rgba(0, 0, 0, 0.05)',
+              radius: 6,
+            }}
+            contentStyle={{
+              backgroundColor: darkMode ? '#1f1f1f' : '#ffffff',
+              border: darkMode ? '1px solid #777' : '1px solid #ccc',
+              borderRadius: '8px',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+              color: darkMode ? '#fff' : '#000',
+              padding: '10px',
+            }}
+            itemStyle={{
+              color: darkMode ? '#fff' : '#000',
+              fontSize: '0.9rem',
+            }}
+            labelStyle={{
+              color: darkMode ? '#ccc' : '#333',
+              fontWeight: 'bold',
+            }}
+          />
+          <Legend
+            verticalAlign="bottom"
+            align="left"
+            wrapperStyle={{ paddingTop: '10px', paddingLeft: '20px' }}
+            formatter={legendFormatter}
+          />
+          <Bar
+            dataKey="value"
+            fill="#2d72e1"
+            name="No. of API Calls"
+            barSize={30}
+            activeBar={<CustomActiveBar darkMode={darkMode} />}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 
