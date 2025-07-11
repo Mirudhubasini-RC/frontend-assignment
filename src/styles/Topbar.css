@@ -1,0 +1,96 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  font-family: 'Figtree', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  transition: background-color 0.3s ease;
+}
+
+.topbar.dark {
+  background-color: #111;
+  border-color: #333;
+  color: white;
+}
+
+.title-section { /* New class for the container of logo and title */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between logo and title */
+}
+
+.topbar-logo-img {
+  /* Hide by default on larger screens */
+  display: none;
+
+  /* Common styles from sidebar's logo-img */
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 0 10px #2d72e1;
+}
+
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1.2rem;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.user-name {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+/* Media Query for smaller screens (e.g., max-width: 768px or max-width: 480px) */
+@media (max-width: 768px) {
+  .topbar {
+    padding: 0.75rem 1rem; /* Adjust padding for smaller screens */
+  }
+
+  .topbar-logo-img {
+    display: block; /* Show logo on smaller screens */
+  }
+
+  .title {
+    font-size: 1.3rem; /* Adjust title size for smaller screens */
+  }
+
+  .user-section {
+    gap: 0.5rem; /* Reduce gap in user section */
+  }
+
+}
+
+@media (max-width: 480px) {
+    /* Further adjustments for even smaller screens if needed */
+    .topbar {
+        padding: 0.5rem 0.75rem;
+    }
+}
