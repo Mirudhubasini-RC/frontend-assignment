@@ -32,7 +32,7 @@ body {
 }
 
 .sidebar {
-  position: relative; /* Default for larger screens */
+  position: fixed;/* Default for larger screens */
   width: 170px;
   height: 96vh;
   background-color: var(--sidebar-bg-light);
@@ -40,7 +40,6 @@ body {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  z-index: 10;
   cursor: e-resize;
   overflow: hidden;
 }
@@ -63,11 +62,21 @@ body {
   gap: 10px;
   justify-content: center;
 }
-
 .sidebar:not(.collapsed) .logo {
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
+.sidebar.collapsed .company-name {
+  display: none;
+}
+
+.sidebar:not(.collapsed) .company-name {
+  display: inline;
+}
+
+.logo-img {
+  margin: 0; /* Prevent auto centering */
+}
 .sidebar.collapsed .logo {
   width: 100%;
   box-sizing: border-box;
@@ -81,8 +90,9 @@ body {
   border-radius: 8px;
   object-fit: cover;
   box-shadow: 0 0 10px #2d72e1;
-  margin: 0 auto;
+  margin: 0;
 }
+
 
 .company-name {
   font-family: 'Figtree', sans-serif;
@@ -95,7 +105,14 @@ body {
 .sidebar.dark .company-name {
   color: var(--sidebar-text-dark);
 }
+.sidebar.collapsed .company-name {
+  display: none;
+}
 
+/* Make sure it's visible otherwise */
+.sidebar:not(.collapsed) .company-name {
+  display: inline;
+}
 .nav ul {
   list-style: none;
   padding: 0;
@@ -258,8 +275,47 @@ body {
   display: none !important;
 }
 
+@media (max-width: 780px) {
+  .sidebar {
+    width: 70px !important;
+    padding: 1rem 0 !important;
+  }
+
+  .sidebar .company-name,
+  .sidebar .logo {
+    display: none !important;
+  }
+
+  .sidebar .logo-img {
+    display: block !important;
+    margin: 0 auto !important;
+  }
+
+  .sidebar .nav li span:not(.icon),
+  .sidebar .theme-toggle span:not(.icon) {
+    display: none !important;
+  }
+
+  .sidebar .nav li,
+  .sidebar .theme-toggle {
+    justify-content: center !important;
+    padding: 0.75rem 0 !important;
+  }
+
+  .main-content-wrapper {
+    margin-left: 70px !important;
+    width: calc(100% - 70px) !important;
+  }
+
+  .topbar {
+    left: 0 !important;
+    width: 100% !important;
+  }
+}
+
+
 /* Media Queries for Smaller Screens */
-@media (max-width: 768px) {
+@media (max-width: 780px) {
   .sidebar {
     position: fixed; /* Make sidebar fixed on smaller screens */
     left: 0; /* Pin to left edge */
@@ -276,6 +332,13 @@ body {
     box-shadow: none; /* No box-shadow on smaller screens */
   }
 
+   .sidebar .nav {
+    margin-top: 4rem; /* Add the 2rem back here to push icons down */
+  }
+
+  .sidebar .logo {
+    display: none; 
+  }
   .sidebar .logo .company-name {
     display: none;
   }
@@ -321,7 +384,7 @@ body {
     display: none; /* <--- ADD THIS LINE */
   }
   .sidebar .nav {
-    margin-top: 2rem; /* Add the 2rem back here to push icons down */
+    margin-top: 4rem; /* Add the 2rem back here to push icons down */
   }
 
   .main-content-wrapper {

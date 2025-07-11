@@ -1,0 +1,52 @@
+.activity-container {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #fff;
+}
+
+.activity-container.dark {
+  background-color: #0c0c1b;
+  color: #fff;
+}
+
+.table-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.activity-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.activity-table th,
+.activity-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.activity-container.dark .activity-table th,
+.activity-container.dark .activity-table td {
+  border-bottom: 1px solid #444;
+}
+
+.activity-container.dark .activity-table {
+  color: white;
+}
+
+.activity-table th {
+  background-color: #f2f2f2;
+}
+
+.activity-container.dark .activity-table th {
+  background-color: #1f1f2e;
+}
+
+.error-text {
+  color: red;
+  text-align: center;
+}

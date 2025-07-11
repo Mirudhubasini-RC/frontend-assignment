@@ -1,9 +1,10 @@
+// src/components/Topbar.tsx
+
 import React, { useState, useEffect } from 'react';
 import '../styles/Topbar.css';
 import { FaMoon } from 'react-icons/fa';
 import { BsSun } from 'react-icons/bs';
 import companyLogo from '../assets/logo.png'; 
-
 
 interface TopbarProps {
   title: string;
@@ -11,9 +12,17 @@ interface TopbarProps {
   userImageUrl?: string;
   onThemeToggle?: () => void;
   darkMode: boolean;
+  isSidebarCollapsed: boolean; 
 }
 
-const Topbar: React.FC<TopbarProps> = ({ title, userName, userImageUrl, onThemeToggle }) => {
+const Topbar: React.FC<TopbarProps> = ({
+  title,
+  userName,
+  userImageUrl,
+  onThemeToggle,
+  darkMode,
+  isSidebarCollapsed
+}) => {
   const [internalDarkMode, setInternalDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
@@ -33,13 +42,11 @@ const Topbar: React.FC<TopbarProps> = ({ title, userName, userImageUrl, onThemeT
   };
 
   return (
-    <header className={`topbar ${internalDarkMode ? 'dark' : 'light'}`}>
-      <div className="title-section"> {/* Create a new div to hold logo and title */}
-        <img
-          src={companyLogo} // Use the imported logo image
-          alt="Company Logo"
-          className="topbar-logo-img" // New class for topbar logo
-        />
+    <header
+      className={`topbar ${internalDarkMode ? 'dark' : 'light'} ${isSidebarCollapsed ? 'collapsed' : ''}`}
+    >
+      <div className="title-section">
+        <img src={companyLogo} alt="Company Logo" className="topbar-logo-img" />
         <div className="title">{title}</div>
       </div>
 

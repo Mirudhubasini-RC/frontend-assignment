@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+// src/components/SidebarNav.tsx
+
+import React from 'react';
 import '../styles/SidebarNav.css';
 import { MdOutlineSettings } from "react-icons/md";
-import { BsHouse} from "react-icons/bs";
+import { BsHouse } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { FiLogOut } from 'react-icons/fi';
 import logo from '../assets/logo.png';
 
 interface SidebarProps {
   darkMode: boolean;
+  isCollapsed: boolean;
+  onToggleCollapse: () => void;
 }
 
-const SidebarNav: React.FC<SidebarProps> = ({ darkMode }) => {
-  const [collapsed, setCollapsed] = useState(false);
-
-  const toggleSidebar = () => setCollapsed(!collapsed);
-
-  const sidebarClass = `sidebar ${collapsed ? 'collapsed' : ''} ${darkMode ? 'dark' : 'light'}`;
+const SidebarNav: React.FC<SidebarProps> = ({ darkMode, isCollapsed, onToggleCollapse }) => {
+  const sidebarClass = `sidebar ${isCollapsed ? 'collapsed' : ''} ${darkMode ? 'dark' : 'light'}`;
 
   const handleLogout = () => {
     console.log('User logged out');
@@ -35,13 +35,13 @@ const SidebarNav: React.FC<SidebarProps> = ({ darkMode }) => {
           return;
         }
 
-        toggleSidebar();
+        onToggleCollapse(); // call prop function to toggle
       }}
     >
       <div className="top">
         <div className="logo">
           <img src={logo} alt="Logo" className="logo-img" />
-          {!collapsed && <span className="company-name">Datawise</span>}
+          {!isCollapsed && <span className="company-name">Datawise</span>}
         </div>
       </div>
 
@@ -49,15 +49,15 @@ const SidebarNav: React.FC<SidebarProps> = ({ darkMode }) => {
         <ul>
           <li className="active">
             <BsHouse className="icon" />
-            {!collapsed && <span>Dashboard</span>}
+            {!isCollapsed && <span>Dashboard</span>}
           </li>
           <li>
             <BiUser className="icon" />
-            {!collapsed && <span>Users</span>}
+            {!isCollapsed && <span>Users</span>}
           </li>
           <li>
             <MdOutlineSettings className="icon" />
-            {!collapsed && <span>Settings</span>}
+            {!isCollapsed && <span>Settings</span>}
           </li>
         </ul>
       </nav>
@@ -65,7 +65,7 @@ const SidebarNav: React.FC<SidebarProps> = ({ darkMode }) => {
       <div className="bottom">
         <button className="theme-toggle" onClick={handleLogout}>
           <FiLogOut className="icon" />
-          {!collapsed && <span>Logout</span>}
+          {!isCollapsed && <span>Logout</span>}
         </button>
       </div>
     </div>
