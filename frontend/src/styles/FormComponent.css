@@ -1,0 +1,107 @@
+.form-container {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+}
+
+.form-container.dark {
+  background-color: #000007;
+  color: #ffffff;
+}
+
+.form-container h3 {
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;  
+  margin-top: 1px;    
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-fields input {
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
+.form-fields input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.form-fields button {
+  margin-top: 20px;
+  padding: 10px 12px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-fields button:hover {
+  background-color: #0056b3;
+}
+
+.form-message {
+  margin-top: 12px;
+  font-weight: 500;
+  color: green;
+}
+
+.form-container.dark .form-fields input {
+  background-color: #2c2c3a;
+  color: #ffffff;
+  border: 1px solid #555;
+}
+
+.form-container.dark .form-fields input:focus {
+  border-color: #66b2ff;
+}
+
+.form-container.dark .form-fields button {
+  background-color: #3399ff;
+}
+
+.form-container.dark .form-fields button:hover {
+  background-color: #267acc;
+}
+
+.form-container.dark .form-message {
+  color: #90ee90;
+}
+
+.form-error {
+  color: red;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.form-message {
+  color: green;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.form-container.dark select {
+  background-color: #2c2c3a;
+  color: white;
+  border: 1px solid #555;
+}

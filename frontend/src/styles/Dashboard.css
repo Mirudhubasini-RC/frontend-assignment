@@ -1,0 +1,144 @@
+/* src/styles/Dashboard.css */
+
+/* Import Figtree font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700&display=swap');
+
+:root {
+  --dashboard-bg-light: white;
+  --dashboard-border-light: #2d72e1;
+  --dashboard-text-light: black;
+  --body-bg-color-dark: #030303;
+}
+
+.dark {
+  --dashboard-bg-dark: var(--body-bg-color-dark, #1a1a1a);
+  --dashboard-border-dark: #a0aec0;
+  --dashboard-text-dark: white;
+}
+
+.dashboard-container {
+  margin: 0;
+  width: 100%;
+  min-height: calc(100% - 0.4rem);
+  height: 100%;
+  border-radius: 10px;
+  padding: 1rem;
+  box-sizing: border-box;
+
+  background-color: var(--dashboard-bg-light);
+  color: var(--dashboard-text-light);
+  border: 1px solid var(--dashboard-border-light);
+  box-shadow: 0 0 15px 0px rgba(45, 114, 225, 0.5);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-container.dark {
+  background-color: var(--dashboard-bg-dark);
+  color: var(--dashboard-text-dark);
+  border: 1px solid var(--dashboard-border-dark);
+  box-shadow: 0 0 10px 0px rgba(160, 174, 192, 0.3);
+}
+
+.dashboard-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: inherit;
+}
+
+/* Consistent title for chart and form */
+.shared-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: inherit;
+}
+
+.dashboard-content-flex-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: auto;
+}
+
+/* CHART CONTAINER */
+.chart-wrapper-left {
+  flex: 1;
+  min-width: 400px;
+  max-width: 750px;
+  height: 400px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 1rem;
+  background-color: var(--dashboard-bg-light);
+  border: 1px solid var(--dashboard-border-light);
+  box-shadow: 0 0 10px rgba(45, 114, 225, 0.2);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.dashboard-container.dark .chart-wrapper-left {
+  background-color: var(--dashboard-bg-dark);
+  border: 1px solid var(--dashboard-border-dark);
+  box-shadow: 0 0 10px rgba(160, 174, 192, 0.15);
+}
+
+/* FORM CONTAINER */
+.form-field-area {
+  flex: 1;
+  min-width: 300px;
+  max-width: 450px;
+  height: 400px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 1rem;
+  background-color: var(--dashboard-bg-light);
+  border: 1px solid var(--dashboard-border-light);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.dashboard-container.dark .form-field-area {
+  background-color: var(--dashboard-bg-dark);
+  border: 1px solid var(--dashboard-border-dark);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
+}
+
+/* Reusable dark glass card (if needed elsewhere) */
+.dashboard-card {
+  background-color: #1c1c2b;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chart-wrapper-left,
+.form-field-area {
+  align-self: stretch;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .chart-wrapper-left,
+  .form-field-area {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 0.75rem;
+  }
+
+  .chart-wrapper-left,
+  .form-field-area {
+    min-width: unset;
+  }
+}
