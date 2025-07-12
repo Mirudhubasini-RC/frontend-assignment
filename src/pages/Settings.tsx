@@ -4,7 +4,6 @@ import avatarDefault from '../assets/user_avatar.webp';
 import coverDefault from '../assets/cover.png';
 import { BsLockFill } from 'react-icons/bs';
 
-
 interface SettingsProps {
   darkMode: boolean;
   isSidebarCollapsed: boolean;
@@ -12,6 +11,7 @@ interface SettingsProps {
 
 const Settings: React.FC<SettingsProps> = ({ darkMode, isSidebarCollapsed }) => {
   const settingsClass = `settings-container ${darkMode ? 'dark' : 'light'} ${isSidebarCollapsed ? 'collapsed' : 'expanded'}`;
+  const sidebarWidth = isSidebarCollapsed ? 70 : 170;
 
   const [avatar, setAvatar] = useState<string>(avatarDefault);
   const [cover] = useState<string>(coverDefault);
@@ -42,7 +42,7 @@ const Settings: React.FC<SettingsProps> = ({ darkMode, isSidebarCollapsed }) => 
   };
 
   return (
-    <div className={settingsClass}>
+    <div className={settingsClass} style={{ paddingLeft: `${sidebarWidth}px` }}>
       <div className="settings-content">
         {/* Cover Image Banner */}
         <div className="settings-cover">
