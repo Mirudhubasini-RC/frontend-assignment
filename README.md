@@ -5,29 +5,43 @@ This is a frontend assignment project for a Frontend Developer Intern role. It i
 ## 🔧 Setup Instructions
 
 ### 1. Prerequisites
-    ## Node.js and npm
-    - Node.js is the JavaScript runtime, and npm is the package manager that comes with it.
-    ## Windows:
-    - Download and install from: https://nodejs.org/
-    - This will install both node and npm.
-    ## macOS:
-    - If you have Homebrew installed, run:
-    - brew install node
-    ## Ubuntu/Linux:
-    - sudo apt update
-    - sudo apt install nodejs npm
-    ## Git
-    - Git is required to clone the repository.
-    ## Windows:
-    - Download and install from: https://gitforwindows.org
-    ## macOS:
-    - brew install git
-    ## Ubuntu/Linux:
-    - sudo apt install git
-    ## Check installation
-        node -v         # Should return Node.js version (e.g., v18.17.0)
-        npm -v          # Should return npm version (e.g., 9.8.1)
-        git --version   # Should return Git version (e.g., git version 2.42.0)   
+
+#### Node.js and npm
+- Node.js is the JavaScript runtime, and npm is the package manager that comes with it.
+
+    - **Windows:** Download and install from: [https://nodejs.org/](https://nodejs.org/) (This will install both Node.js and npm.)
+    - **macOS:** If you have Homebrew installed, run:
+        ```bash
+        brew install node
+        ```
+    - **Ubuntu/Linux:**
+        ```bash
+        sudo apt update
+        sudo apt install nodejs npm
+        ```
+
+#### Git
+- Git is required to clone the repository.
+
+    - **Windows:** Download and install from: [https://gitforwindows.org](https://gitforwindows.org)
+    - **macOS:**
+        ```bash
+        brew install git
+        ```
+    - **Ubuntu/Linux:**
+        ```bash
+        sudo apt install git
+        ```
+
+#### Check installation
+Verify that Node.js, npm, and Git are installed correctly by running the following commands in your terminal:
+
+```bash
+node -v         # Should return Node.js version (e.g., v18.17.0)
+npm -v          # Should return npm version (e.g., 9.8.1)
+git --version   # Should return Git version (e.g., git version 2.42.0)
+
+---
 
 ### 2. Github Repository Setup
     ## Clone the GitHub repository
@@ -51,9 +65,9 @@ This is a frontend assignment project for a Frontend Developer Intern role. It i
   - Users
   - Settings
 - Dashboard page includes:
-  - 📊 Static bar chart (Recharts)
-  - 👤 User activity table (GET request to mock API)
-  - 📝 Form with 3 fields (POST request to mock API)
+  - Yearly API Usage Bar Chart (Recharts): Displays API call data over months.
+  - API Access Request Form: A form with three fields (Select API, Select Access Level, Justification) for submitting API access requests.
+  - Recent User Activity Table: Shows a list of recent user activities, including Name, Email, Role, API Accessed, and Timestamp.
 - Routing using React Router
 - API integration using Axios
 - State management with React Context API / local state
@@ -63,27 +77,26 @@ This is a frontend assignment project for a Frontend Developer Intern role. It i
 
 ## 🧪 APIs Used
 
-| Purpose           | API Endpoint                                | Service         |
-|------------------|----------------------------------------------|-----------------|
-| User List (GET)  | https://jsonplaceholder.typicode.com/users   | JSONPlaceholder |
-| Form Submit (POST)| https://reqres.in/api/users                  | Reqres.in       |
-
+| Purpose                | API Endpoint                                             | Service     |
+| :--------------------- | :------------------------------------------------------- | :---------- |
+| **Bar Chart Usage Data** | `https://6870b5d37ca4d06b34b7a733.mockapi.io/barchart/api-usage` | mockapi.io |
+| **Form Submit (POST)** | `https://6870b5d37ca4d06b34b7a733.mockapi.io/request_api`  | mockapi.io |
+| **User Activity List (GET)** | `https://6870f5337ca4d06b34b8c9fe.mockapi.io/users/activity` | mockapi.io |
 ---
 
 ## 📌 Assumptions Made
-- Backend functionality is simulated using public mock API services.
-- Submitted form data is not persisted (mock POST).
-- Bar chart uses static or randomly generated mock data.
-- Styling is kept minimal but responsive.
-
+ - Backend functionality is simulated using public mock API services.
+ - Submitted form data is not persisted on the mock API (mock POST).
+ - The bar chart's "Yearly API Usage" data is fetched from a mock API endpoint.
+ - Styling is kept minimal and relative to company's website but ensures responsiveness across different screen sizes.
+---
 ## 🛠️ Libraries / Tools Used
 
-- React	UI Development
-- TypeScript	Type-safe development
-- React Router DOM	Client-side routing
-- Axios	HTTP requests
-- Recharts	Bar chart rendering
-- JSONPlaceholder	Mock GET API
-- Reqres.in	Mock POST API
-- CSS / SCSS	Component styling
-- Create React App	Project bootstrapping
+ - React: For building the user interface.
+ - TypeScript: For type-safe development.
+ - React Router DOM: For client-side routing.
+ - Axios: For making HTTP requests to APIs.
+ - Recharts: For rendering the bar chart.
+ - mockapi.io: For providing mock GET and POST API endpoints.
+ - CSS: For styling.
+ - Create React App: For project bootstrapping.
