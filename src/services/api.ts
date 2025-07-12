@@ -24,3 +24,8 @@ export const submitUserData = (data: {
 export const fetchUserActivity = () => {
   return axios.get(`${API_BASE_ACTIVITY}/users/activity`);
 };
+
+// GET: Fetch cartoon-style user list
+export const fetchUsers = () => {
+  return axios.get(`${API_BASE_ACTIVITY}/users/users`);
+};

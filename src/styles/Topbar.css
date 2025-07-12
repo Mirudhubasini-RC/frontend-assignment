@@ -53,6 +53,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-right: 10px;
 }
 
 .user-name {
@@ -69,9 +70,10 @@
   display: flex;
   align-items: center;
   transition: color 0.3s, filter 0.3s;
-  appearance: none; /* <- This removes native styling */
+  appearance: none; 
   -webkit-appearance: none;
   -moz-appearance: none;
+  transform: translateY(-2px);
 }
 
 .theme-toggle-btn:focus,
@@ -82,13 +84,13 @@
   box-shadow: none !important;
 }
 
-/* Hover Effect for Light Theme */
+
 .theme-toggle-btn:hover {
   color: var(--sidebar-icon-hover-light);
   filter: drop-shadow(0 0 8px var(--sidebar-glow-light)) brightness(1.2);
 }
 
-/* Hover Effect for Dark Theme */
+
 .topbar.dark .theme-toggle-btn:hover {
   color: var(--sidebar-icon-hover-dark);
   filter: drop-shadow(0 0 8px var(--sidebar-glow-dark)) brightness(1.2);
@@ -101,6 +103,28 @@
   object-fit: cover;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
+
+.role-popup {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+.role-popup.dark {
+  background: #1e1e1e;
+  color: #f0f0f0;
+  border: 1px solid #444;
+}
+
 
 /* Responsive */
 @media (max-width: 780px) {

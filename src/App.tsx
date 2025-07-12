@@ -46,8 +46,8 @@ const AppContent: React.FC<{
         <div style={{ padding: '0.2rem' }}>
           <Routes>
             <Route path="/" element={<Dashboard darkMode={darkMode} isSidebarCollapsed={isSidebarCollapsed} />} />
-            <Route path="/users" element={<Users darkMode={darkMode} />} />
-            <Route path="/settings" element={<Settings darkMode={darkMode} />} />
+            <Route path="/users" element={<Users darkMode={darkMode} isSidebarCollapsed={isSidebarCollapsed} />} />
+            <Route path="/settings" element={<Settings darkMode={darkMode} isSidebarCollapsed={isSidebarCollapsed}  />} />
           </Routes>
         </div>
       </div>

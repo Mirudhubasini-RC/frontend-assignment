@@ -42,8 +42,8 @@
 }
 
 .dashboard-container.expanded {
-  margin-left: 210px;
-  width: calc(100% - 210px);
+  margin-left: 200px;
+  width: calc(100% - 200px);
 }
 
 .dashboard-container.collapsed {
@@ -146,6 +146,14 @@
   .dashboard-container.collapsed {
     margin-left: 70px; 
     width: calc(100% - 70px);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .chart-wrapper-left,
+  .form-field-area {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
   }
 }
 

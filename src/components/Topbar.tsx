@@ -77,19 +77,7 @@ const Topbar: React.FC<TopbarProps> = ({
           />
           {showRole && (
             <div
-              style={{
-                position: 'absolute',
-                top: '110%',
-                right: 0,
-                background: '#fff',
-                border: '1px solid #ccc',
-                borderRadius: '6px',
-                padding: '4px 8px',
-                fontSize: '0.8rem',
-                whiteSpace: 'nowrap',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
-                zIndex: 100
-              }}
+              className={`role-popup ${internalDarkMode ? 'dark' : ''}`}
             >
               Admin
             </div>

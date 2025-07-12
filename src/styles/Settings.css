@@ -1,0 +1,473 @@
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--topbar-height);
+  padding: 1rem;
+  min-height: calc(100vh - var(--topbar-height));
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: var(--dashboard-bg-light);
+  color: var(--dashboard-text-light);
+  border: 1px solid var(--dashboard-border-light);
+  box-shadow: 0 0 10px rgba(45, 114, 225, 0.15);
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  overflow-x: hidden; /* Prevent horizontal scroll within the container */
+  min-width: 0; /* Allow container to shrink below content size if needed in flex/grid context */
+}
+
+.settings-container.dark {
+  background-color: var(--dashboard-bg-dark);
+  color: var(--dashboard-text-dark);
+  border: 1px solid var(--dashboard-border-dark);
+  box-shadow: 0 0 10px rgba(160, 174, 192, 0.3);
+}
+
+.settings-container.expanded {
+  margin-left: 200px;
+  width: calc(100% - 200px);
+}
+
+.settings-container.collapsed {
+  margin-left: 70px;
+  width: calc(100% - 70px);
+}
+
+/* Settings Content Wrapper */
+.settings-content {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #2d72e1;
+  box-shadow: 0 0 10px rgba(45, 114, 225, 0.2);
+  overflow: hidden; /* Ensure content doesn't spill out */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.settings-container.dark .settings-content {
+  background-color: #000007;
+  border: 1px solid #a0aec0;
+  box-shadow: 0 0 10px rgba(160, 174, 192, 0.15);
+}
+
+/* Cover Banner */
+.settings-cover {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2d72e1, #5a8dee);
+  border-radius: 12px 12px 0 0;
+}
+
+.cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block; /* Remove extra space below image */
+}
+
+/* Profile Section */
+.settings-profile-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2rem;
+  /* Changed margin to use auto for horizontal centering and flexibility */
+  margin: -80px auto 2rem auto; 
+  max-width: 1200px;
+  /* Ensure padding is inside the box model */
+  box-sizing: border-box; 
+  background-color: #ffffff;
+  border: 1px solid #2d72e1;
+  border-radius: 16px;
+  padding: 2rem; /* Default padding */
+  box-shadow: 0 8px 32px rgba(45, 114, 225, 0.15);
+  position: relative;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.settings-container.dark .settings-profile-section {
+  background-color: #000007;
+  border: 1px solid #a0aec0;
+  box-shadow: 0 8px 32px rgba(160, 174, 192, 0.2);
+}
+
+.avatar-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #2d72e1;
+  box-shadow: 0 4px 16px rgba(45, 114, 225, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.profile-avatar:hover {
+  transform: scale(1.05);
+}
+
+.avatar-upload-btn {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #2d72e1;
+  border: 2px solid #2d72e1;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.avatar-upload-btn:hover {
+  background-color: #2d72e1;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.dark .avatar-upload-btn {
+  color: #66b2ff;
+  border-color: #66b2ff;
+}
+
+.dark .avatar-upload-btn:hover {
+  background-color: #66b2ff;
+  color: #000007;
+}
+
+.user-info-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.profile-name {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: var(--dashboard-text-light);
+}
+
+.settings-container.dark .profile-name {
+  color: var(--dashboard-text-dark);
+}
+
+.profile-role {
+  color: white;
+  background: linear-gradient(135deg, #2d72e1, #5a8dee);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0;
+  width: fit-content;
+  box-shadow: 0 2px 8px rgba(45, 114, 225, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-email {
+  font-size: 1rem;
+  margin-top: 8px;
+  color: #666;
+  font-weight: 500;
+}
+
+.settings-container.dark .profile-email {
+  color: #aaa;
+}
+
+/* Settings Form Area */
+.settings-form-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem; /* Default padding */
+  max-width: 1200px;
+  margin: -1rem auto 0 auto; /* Auto horizontal margins */
+  box-sizing: border-box; /* Ensure padding is inside the box model */
+}
+
+.form-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--dashboard-text-light);
+  position: relative;
+}
+
+.form-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(135deg, #2d72e1, #5a8dee);
+  border-radius: 2px;
+}
+
+.settings-container.dark .form-title {
+  color: var(--dashboard-text-dark);
+}
+
+.password-form {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: #ffffff;
+  border: 1px solid #2d72e1;
+  padding: 2.5rem; /* Default padding */
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(45, 114, 225, 0.15);
+  transition: all 0.3s ease;
+  box-sizing: border-box; /* Ensure padding is inside the box model */
+}
+
+.settings-container.dark .password-form {
+  background-color: #000007;
+  border: 1px solid #a0aec0;
+  box-shadow: 0 8px 32px rgba(160, 174, 192, 0.2);
+}
+
+/* Form Fields */
+.password-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dashboard-text-light);
+  gap: 8px;
+}
+
+.settings-container.dark .password-form label {
+  color: var(--dashboard-text-dark);
+}
+
+.password-form input {
+  padding: 1rem;
+  border-radius: 10px;
+  border: 2px solid #e1e5e9;
+  font-size: 1rem;
+  background-color: white;
+  color: black;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.password-form input:focus {
+  border-color: #2d72e1;
+  box-shadow: 0 0 0 3px rgba(45, 114, 225, 0.1);
+}
+
+.password-form input::placeholder {
+  color: #999;
+}
+
+.password-form button {
+  background: linear-gradient(135deg, #2d72e1, #5a8dee);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  box-shadow: 0 4px 16px rgba(45, 114, 225, 0.3);
+}
+
+.password-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(45, 114, 225, 0.4);
+}
+
+.password-form button:active {
+  transform: translateY(0);
+}
+
+/* Dark theme inputs */
+.settings-container.dark .password-form input {
+  background-color: #1f1f2e;
+  color: white;
+  border: 2px solid #444;
+}
+
+.settings-container.dark .password-form input:focus {
+  border-color: #66b2ff;
+  box-shadow: 0 0 0 3px rgba(102, 178, 255, 0.1);
+}
+
+.settings-container.dark .password-form input::placeholder {
+  color: #666;
+}
+
+/* Lock Icon via react-icons */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon input {
+  width: 100%;
+  padding-left: 3rem;
+}
+
+.input-icon-bootstrap {
+  position: absolute;
+  left: 1rem;
+  font-size: 1.2rem;
+  color: #2d72e1;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.settings-container.dark .input-icon-bootstrap {
+  color: #66b2ff;
+}
+
+/* Readonly Input */
+input[readonly] {
+  background-color: #f8f9fa !important;
+  color: #666 !important;
+  cursor: not-allowed;
+}
+
+.settings-container.dark input[readonly] {
+  background-color: #1e1e2d !important;
+  color: #888 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .settings-container.expanded,
+  .settings-container.collapsed {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 0.5rem; /* Adjust padding for smaller screens */
+  }
+
+  .settings-profile-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    /* Adjusted negative margin and added auto horizontal margins */
+    margin: -60px auto 2rem auto; 
+    padding: 1.5rem; /* Reduced padding */
+  }
+
+  .user-info-column {
+    align-items: center;
+  }
+
+  .password-form {
+    padding: 2rem;
+  }
+
+  .settings-form-area {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .settings-cover {
+    height: 200px;
+  }
+
+  .settings-profile-section {
+    margin-top: -50px; /* Further adjusted negative margin */
+    padding: 1.25rem; /* Further reduced padding */
+  }
+
+  .profile-name {
+    font-size: 1.5rem;
+  }
+
+  .password-form {
+    padding: 1.5rem;
+  }
+
+  .settings-form-area {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .settings-cover {
+    height: 150px;
+  }
+
+  .settings-profile-section {
+    /* Even further adjusted negative margin and side margins, using auto for horizontal */
+    margin: -40px auto 1rem auto; 
+    padding: 1rem; /* Reduced padding */
+    gap: 1rem; /* Reduce gap between avatar and user info */
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-name {
+    font-size: 1.25rem;
+  }
+
+  .form-title {
+    font-size: 1.5rem;
+  }
+
+  .password-form {
+    padding: 1rem;
+  }
+
+  .settings-form-area {
+    padding: 0.5rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.settings-profile-section,
+.password-form {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Focus styles */
+.avatar-upload-btn:focus,
+.password-form button:focus {
+  outline: 2px solid #2d72e1;
+  outline-offset: 2px;
+}
+
+.settings-container.dark .avatar-upload-btn:focus,
+.settings-container.dark .password-form button:focus {
+  outline-color: #66b2ff;
+}
