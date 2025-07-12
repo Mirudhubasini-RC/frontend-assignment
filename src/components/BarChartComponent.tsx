@@ -91,16 +91,21 @@ const BarChartComponent: React.FC<BarChartComponentProps> = ({ darkMode }) => {
           margin={{ top: 20, right: 30, left: 40, bottom: 40 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis
+         <XAxis
             dataKey="name"
+            angle={-45}
+            textAnchor="end"
+            interval={0}
             label={{
               value: 'Months',
               position: 'bottom',
-              offset: 20,
+              offset: 1,
               style: axisLabelStyle,
             }}
             padding={{ left: 20, right: 20 }}
+            height={60}
           />
+
           <YAxis
             label={{
               value: 'API Call Usage',
@@ -137,14 +142,14 @@ const BarChartComponent: React.FC<BarChartComponentProps> = ({ darkMode }) => {
           <Legend
             verticalAlign="bottom"
             align="left"
-            wrapperStyle={{ paddingTop: '10px', paddingLeft: '20px' }}
+            wrapperStyle={{ paddingTop: '1px', paddingLeft: '20px' }}
             formatter={legendFormatter}
           />
           <Bar
             dataKey="value"
             fill="#2d72e1"
             name="No. of API Calls"
-            barSize={30}
+            barSize={20}
             activeBar={<CustomActiveBar darkMode={darkMode} />}
           />
         </BarChart>
