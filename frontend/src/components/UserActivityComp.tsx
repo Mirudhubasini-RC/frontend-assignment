@@ -1,7 +1,7 @@
 // src/components/UserActivityComp.tsx
 
 import React, { useEffect, useState } from 'react';
-import { fetchUserActivity } from '../services/api'; // ✅ use central API handler
+import { fetchUserActivity } from '../services/api';
 import '../styles/UserActivityComp.css';
 
 interface UserActivity {
@@ -39,7 +39,7 @@ const UserActivityComp: React.FC<Props> = ({ darkMode }) => {
   }, []);
 
   return (
-    <div className={`activity-container ${darkMode ? 'dark' : 'light'}`}>
+    <div className={`activity-wrapper ${darkMode ? 'dark' : 'light'}`}>
       <h3 className="table-title">Recent User Activity</h3>
 
       {loading ? (
@@ -47,28 +47,30 @@ const UserActivityComp: React.FC<Props> = ({ darkMode }) => {
       ) : error ? (
         <p className="error-text">{error}</p>
       ) : (
-        <table className="activity-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>API Accessed</th>
-              <th>Timestamp</th>
-            </tr>
-          </thead>
-          <tbody>
-            {activityData.map((activity) => (
-              <tr key={activity.id}>
-                <td>{activity.name}</td>
-                <td>{activity.email}</td>
-                <td>{activity.role}</td>
-                <td>{activity.apiName}</td>
-                <td>{new Date(activity.timestamp).toLocaleString()}</td>
+        <div className="activity-table-wrapper">
+          <table className="activity-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>API Accessed</th>
+                <th>Timestamp</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {activityData.map((activity) => (
+                <tr key={activity.id}>
+                  <td>{activity.name}</td>
+                  <td>{activity.email}</td>
+                  <td>{activity.role}</td>
+                  <td>{activity.apiName}</td>
+                  <td>{new Date(activity.timestamp).toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

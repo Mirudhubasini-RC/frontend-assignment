@@ -15,6 +15,8 @@ const AppContent: React.FC<{
   const location = useLocation();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
+
+
   const getTitle = () => {
     switch (location.pathname) {
       case '/users':
@@ -27,13 +29,13 @@ const AppContent: React.FC<{
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', overflow: 'hidden' }}>
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
       <SidebarNav
         darkMode={darkMode}
         isCollapsed={isSidebarCollapsed}
         onToggleCollapse={() => setIsSidebarCollapsed(prev => !prev)}
       />
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Topbar
           title={getTitle()}
           userName="Mirudhu"
@@ -42,9 +44,9 @@ const AppContent: React.FC<{
           onThemeToggle={toggleTheme}
           isSidebarCollapsed={isSidebarCollapsed}
         />
-        <div style={{ padding: '0.2rem', flex: 1, overflowY: 'auto' }}>
+        <div style={{ padding: '0.2rem' }}>
           <Routes>
-            <Route path="/" element={<Dashboard darkMode={darkMode} />} />
+            <Route path="/" element={<Dashboard darkMode={darkMode} isSidebarCollapsed={isSidebarCollapsed} />} />
             <Route path="/users" element={<Users darkMode={darkMode} />} />
             <Route path="/settings" element={<Settings darkMode={darkMode} />} />
           </Routes>

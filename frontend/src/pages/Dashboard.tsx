@@ -7,12 +7,12 @@ import UserActivityComp from '../components/UserActivityComp'; // 👈 Import th
 
 interface DashboardProps {
   darkMode: boolean;
+  isSidebarCollapsed: boolean;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ darkMode }) => {
-  const dashboardClass = `dashboard-container ${darkMode ? 'dark' : 'light'}`;
+const Dashboard: React.FC<DashboardProps> = ({ darkMode, isSidebarCollapsed }) => {
+  const dashboardClass = `dashboard-container ${darkMode ? 'dark' : 'light'} ${isSidebarCollapsed ? 'collapsed' : 'expanded'}`;
   
-
   return (
     <div className={dashboardClass}>
       {/* Top: Flex row (Chart + Form) */}
