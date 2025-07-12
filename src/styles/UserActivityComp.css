@@ -1,0 +1,61 @@
+.activity-wrapper {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  border: 1px solid #2d72e1; /* Blue border */
+  box-shadow: 0 0 10px rgba(45, 114, 225, 0.2); /* Blue glow */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.activity-wrapper.dark {
+  background-color: #000007;
+  color: white;
+  border: 1px solid #a0aec0;
+  box-shadow: 0 0 10px rgba(160, 174, 192, 0.15);
+}
+
+.table-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.activity-table-wrapper {
+  overflow-x: auto;
+}
+
+.activity-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.activity-table th,
+.activity-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.activity-table th {
+  background-color: #e8f0fe; /* Light blue background */
+  color: #2d72e1;            /* Blue text like form's button */
+  font-weight: 600;
+}
+
+.activity-wrapper.dark .activity-table th {
+  background-color: #1f1f2e;
+  color: #66b2ff; /* Light blue for dark mode */
+}
+
+.activity-wrapper.dark .activity-table td {
+  border-bottom: 1px solid #444;
+}
+
+.error-text {
+  color: red;
+  text-align: center;
+}

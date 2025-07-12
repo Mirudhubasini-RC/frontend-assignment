@@ -1,150 +1,219 @@
-/* src/styles/Dashboard.css */
-
-/* Import Figtree font from Google Fonts - Keep this here as it's a global font import */
+/* Import Figtree font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700&display=swap');
 
-
-/* Define dashboard specific variables within :root or .dark/.light classes */
 :root {
   --dashboard-bg-light: white;
-  --dashboard-border-light: #2d72e1; /* Blue glow color */
+  --dashboard-border-light: #2d72e1;
   --dashboard-text-light: black;
-  /* Add or ensure --body-bg-color is defined here if not in a global stylesheet */
-  /* For matching the topbar/sidebar background (often defined in a global CSS or sidebar.css) */
-  --body-bg-color-dark: #030303; /* Assuming your sidebar/topbar dark background is this */
+  --body-bg-color-dark: #030303;
+  --topbar-height: 70px;
 }
 
 .dark {
-  /* Change --dashboard-bg-dark to match your sidebar/topbar dark background */
-  --dashboard-bg-dark: var(--body-bg-color-dark, #1a1a1a); /* Use the same dark background as body/sidebar/topbar */
-  --dashboard-border-dark: #a0aec0; /* Silver blue color (example: slate-400 from Tailwind) */
+  --dashboard-bg-dark: var(--body-bg-color-dark, #1a1a1a);
+  --dashboard-border-dark: #a0aec0;
   --dashboard-text-dark: white;
 }
 
-/* The main container for the Dashboard page itself */
 .dashboard-container {
   margin: 0;
-  width: 100%;
-  min-height: calc(100% - 0.4rem); /* Based on App.tsx padding: '0.2rem' */
-  height: 100%;
+  min-height: calc(100vh - var(--topbar-height));
+  height: auto;
   border-radius: 10px;
-  padding: 1rem; /* Reduced padding from 1.5rem to 1rem for overall tighter spacing */
+  padding: 1rem;
   box-sizing: border-box;
-
+  overflow-x: hidden;
+  overflow-y: unset;
   background-color: var(--dashboard-bg-light);
   color: var(--dashboard-text-light);
+  margin-top: var(--topbar-height);
   border: 1px solid var(--dashboard-border-light);
   box-shadow: 0 0 15px 0px rgba(45, 114, 225, 0.5);
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-
+  transition: margin-left 0.3s ease, width 0.3s ease;
   display: flex;
   flex-direction: column;
 }
 
 .dashboard-container.dark {
-  background-color: var(--dashboard-bg-dark); /* This will now use #1a1a1a */
+  background-color: var(--dashboard-bg-dark);
   color: var(--dashboard-text-dark);
   border: 1px solid var(--dashboard-border-dark);
   box-shadow: 0 0 10px 0px rgba(160, 174, 192, 0.3);
 }
 
-/* Title styling for the main dashboard page */
+.dashboard-container.expanded {
+  margin-left: 210px;
+  width: calc(100% - 210px);
+}
+
+.dashboard-container.collapsed {
+  margin-left: 70px;
+  width: calc(100% - 70px);
+}
+
 .dashboard-title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: black;
-  margin-bottom: 1rem; /* Reduced from 1.5rem to bring content closer to title */
+  margin-bottom: 1rem;
+  color: inherit;
 }
 
-body.dark .dashboard-title {
-  color: white;
+/* Consistent title for chart and form */
+.shared-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: inherit;
 }
 
-/* NEW CLASS: Styles for the main flex container that holds the chart and form sections */
-/* These styles were previously inline in Dashboard.tsx */
 .dashboard-content-flex-container {
   display: flex;
-  gap: 10px; /* Reduced gap to 10px */
-  margin-top: 10px; /* Reduced from 20px to bring content closer to dashboard title */
+  justify-content: space-between;
+  gap: 1rem; 
+  align-items: flex-start;
   flex-wrap: wrap;
-  height: calc(100% - 70px); /* Adjust height as needed */
+  height: auto;
+  width: 100%;
+  overflow-x: hidden;
+  margin-bottom: 0.5rem; 
 }
 
-
-/* Styles for the chart window and form area */
+/* CHART CONTAINER */
 .chart-wrapper-left {
-  flex: 2;
-  /* Reduced min-width to allow the chart wrapper to be smaller */
-  min-width: 280px; /* Adjusted from 300px */
-  height: auto;
-  min-height: 250px;
+  flex: 1;
+  min-width: 400px;
+  max-width: 900px;
   box-sizing: border-box;
-  border-radius: 10px;
-  /* Reduced padding to shrink the outer window size */
-  padding: 0.5rem; /* Adjusted from 1rem */
-
-  /* This will now also use #1a1a1a in dark mode */
+  border-radius: 12px;
+  padding: 1rem;
   background-color: var(--dashboard-bg-light);
   border: 1px solid var(--dashboard-border-light);
-  box-shadow: 0 0 15px 0px rgba(45, 114, 225, 0.5);
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 10px rgba(45, 114, 225, 0.2);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .dashboard-container.dark .chart-wrapper-left {
-  background-color: var(--dashboard-bg-dark); /* This will now use #1a1a1a */
+  background-color: var(--dashboard-bg-dark);
   border: 1px solid var(--dashboard-border-dark);
-  box-shadow: 0 0 10px 0px rgba(93, 100, 109, 0.3);
+  box-shadow: 0 0 10px rgba(160, 174, 192, 0.15);
 }
 
+/* FORM CONTAINER */
 .form-field-area {
   flex: 1;
-  min-width: 250px;
-  height: auto;
-  min-height: 250px;
+  min-width: 300px;
+  max-width: 450px;
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 1rem;
-
-  /* This will also use #1a1a1a in dark mode */
   background-color: var(--dashboard-bg-light);
   border: 1px solid var(--dashboard-border-light);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .dashboard-container.dark .form-field-area {
-  background-color: var(--dashboard-bg-dark); /* This will now use #1a1a1a */
+  background-color: var(--dashboard-bg-dark);
   border: 1px solid var(--dashboard-border-dark);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-/* NEW CLASS: Styles for the input field in the form section */
-.form-input-field {
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #cccccc;
-  width: 100%;
-  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
 }
 
 
-/* Media Queries for smaller screens */
+
+/* Optional: give bottom spacing to every card */
+.chart-wrapper-left,
+.form-field-area,
+.user-activity-table-area {
+  margin-bottom: 1rem;
+}
+
+/* Reusable dark glass card (if needed elsewhere) */
+.dashboard-card {
+  background-color: #1c1c2b;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Align heights if needed */
+.chart-wrapper-left,
+.form-field-area {
+  align-self: stretch;
+}
+
+@media (max-width: 780px) {
+  .dashboard-container.expanded,
+  .dashboard-container.collapsed {
+    margin-left: 70px; /* match sidebar collapsed width */
+    width: calc(100% - 70px);
+  }
+}
+
+
+/* Responsive styles */
 @media (max-width: 1024px) {
   .chart-wrapper-left,
   .form-field-area {
     flex: 1 1 100%;
     max-width: 100%;
   }
-  .dashboard-container {
-    padding: 1rem;
-  }
 }
 
 @media (max-width: 768px) {
   .dashboard-container {
     padding: 0.75rem;
+    margin-top: var(--topbar-height);
   }
-  .chart-wrapper-left, .form-field-area {
+
+  .chart-wrapper-left,
+  .form-field-area {
     min-width: unset;
+  }
+}
+
+/* === Ultra-Wide Screen Fixes (MacBook Pro 16-inch and similar) === */
+@media (min-width: 1440px) {
+  .dashboard-content-flex-container {
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+  }
+
+  .chart-wrapper-left,
+  .form-field-area {
+    max-width: 500px;
+    flex: 0 0 500px;
+  }
+
+  .form-field-area {
+    margin-left: 0.5rem;
+  }
+
+  .dashboard-container {
+    width: 100%; /* Use full width */
+    margin-left: inherit;
+    margin-right: inherit;
+  }
+}
+
+@media (min-width: 1200px) {
+  .dashboard-content-flex-container {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 0;
+    gap: 1rem;
+  }
+
+  .chart-wrapper-left,
+  .form-field-area {
+    flex: 0 0 50%;
+    max-width: 49%;
+  }
+
+  .dashboard-container {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
