@@ -1,4 +1,4 @@
-/* Import Figtree font from Google Fonts */
+
 @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700&display=swap');
 
 :root {
@@ -28,7 +28,7 @@
   color: var(--dashboard-text-light);
   margin-top: var(--topbar-height);
   border: 1px solid var(--dashboard-border-light);
-  box-shadow: 0 0 15px 0px rgba(45, 114, 225, 0.5);
+  box-shadow: 0 0 10px rgba(45, 114, 225, 0.15);
   transition: margin-left 0.3s ease, width 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -58,7 +58,7 @@
   color: inherit;
 }
 
-/* Consistent title for chart and form */
+
 .shared-title {
   font-size: 1.25rem;
   font-weight: 600;
@@ -79,7 +79,7 @@
   margin-bottom: 0.5rem; 
 }
 
-/* CHART CONTAINER */
+
 .chart-wrapper-left {
   flex: 1 1 100%;
   min-width: 0;
@@ -99,7 +99,7 @@
   box-shadow: 0 0 10px rgba(160, 174, 192, 0.15);
 }
 
-/* FORM CONTAINER */
+
 .form-field-area {
   flex: 1;
   min-width: 300px;
@@ -120,15 +120,13 @@
 }
 
 
-
-/* Optional: give bottom spacing to every card */
 .chart-wrapper-left,
 .form-field-area,
 .user-activity-table-area {
   margin-bottom: 1rem;
 }
 
-/* Reusable dark glass card (if needed elsewhere) */
+
 .dashboard-card {
   background-color: #1c1c2b;
   border-radius: 12px;
@@ -137,7 +135,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Align heights if needed */
+
 .chart-wrapper-left,
 .form-field-area {
   align-self: stretch;
@@ -146,13 +144,12 @@
 @media (max-width: 780px) {
   .dashboard-container.expanded,
   .dashboard-container.collapsed {
-    margin-left: 70px; /* match sidebar collapsed width */
+    margin-left: 70px; 
     width: calc(100% - 70px);
   }
 }
 
 
-/* Responsive styles */
 @media (max-width: 1024px) {
   .chart-wrapper-left,
   .form-field-area {
@@ -177,7 +174,6 @@
   }
 }
 
-/* === Ultra-Wide Screen Fixes (MacBook Pro 16-inch and similar) === */
 @media (min-width: 1440px) {
   .dashboard-content-flex-container {
     justify-content: space-evenly;
@@ -195,7 +191,7 @@
   }
 
   .dashboard-container {
-    width: 100%; /* Use full width */
+    width: 100%; 
     margin-left: inherit;
     margin-right: inherit;
   }

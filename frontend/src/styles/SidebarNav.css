@@ -161,7 +161,7 @@ body {
   color: var(--sidebar-icon-hover-dark);
 }
 
-/* === Bottom (Logout Button) === */
+
 .bottom {
   margin-top: auto;
   padding: 1rem;
@@ -176,7 +176,7 @@ body {
   border-top: 1px solid #4a5568;
 }
 
-/* === Logout Button === */
+
 .logout-button {
   margin-top: -10px;
   background: none;
@@ -256,11 +256,11 @@ body {
   }
 
   .sidebar .nav {
-  padding-top: 5rem; /* Prevents overlapping with topbar */
+  padding-top: 5rem; 
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  align-items: center; /* center icons in collapsed view */
+  align-items: center; 
 }
   .sidebar .nav li,
   .sidebar .logout-button {

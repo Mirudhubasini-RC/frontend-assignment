@@ -1,11 +1,10 @@
-// src/components/SidebarNav.tsx
-
 import React from 'react';
 import '../styles/SidebarNav.css';
 import { MdOutlineSettings } from "react-icons/md";
 import { BsHouse } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { FiLogOut } from 'react-icons/fi';
+import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 interface SidebarProps {
@@ -16,6 +15,8 @@ interface SidebarProps {
 
 const SidebarNav: React.FC<SidebarProps> = ({ darkMode, isCollapsed, onToggleCollapse }) => {
   const sidebarClass = `sidebar ${isCollapsed ? 'collapsed' : ''} ${darkMode ? 'dark' : 'light'}`;
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     console.log('User logged out');
@@ -47,15 +48,24 @@ const SidebarNav: React.FC<SidebarProps> = ({ darkMode, isCollapsed, onToggleCol
 
       <nav className="nav">
         <ul>
-          <li className="active">
+          <li
+            className={location.pathname === '/' ? 'active' : ''}
+            onClick={() => navigate('/')}
+          >
             <BsHouse className="icon" />
             {!isCollapsed && <span>Dashboard</span>}
           </li>
-          <li>
+          <li
+            className={location.pathname === '/users' ? 'active' : ''}
+            onClick={() => navigate('/users')}
+          >
             <BiUser className="icon" />
             {!isCollapsed && <span>Users</span>}
           </li>
-          <li>
+          <li
+            className={location.pathname === '/settings' ? 'active' : ''}
+            onClick={() => navigate('/settings')}
+          >
             <MdOutlineSettings className="icon" />
             {!isCollapsed && <span>Settings</span>}
           </li>
