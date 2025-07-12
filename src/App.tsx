@@ -16,7 +16,6 @@ const AppContent: React.FC<{
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
 
-
   const getTitle = () => {
     switch (location.pathname) {
       case '/users':
