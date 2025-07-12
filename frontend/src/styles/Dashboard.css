@@ -164,11 +164,56 @@
 @media (max-width: 768px) {
   .dashboard-container {
     padding: 0.75rem;
-    margin-top: 60px; 
+    margin-top: var(--topbar-height);
   }
 
   .chart-wrapper-left,
   .form-field-area {
     min-width: unset;
+  }
+}
+
+/* === Ultra-Wide Screen Fixes (MacBook Pro 16-inch and similar) === */
+@media (min-width: 1440px) {
+  .dashboard-content-flex-container {
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+  }
+
+  .chart-wrapper-left,
+  .form-field-area {
+    max-width: 500px;
+    flex: 0 0 500px;
+  }
+
+  .form-field-area {
+    margin-left: 0.5rem;
+  }
+
+  .dashboard-container {
+    width: 100%; /* Use full width */
+    margin-left: inherit;
+    margin-right: inherit;
+  }
+}
+
+@media (min-width: 1200px) {
+  .dashboard-content-flex-container {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 0;
+    gap: 1rem;
+  }
+
+  .chart-wrapper-left,
+  .form-field-area {
+    flex: 0 0 50%;
+    max-width: 49%;
+  }
+
+  .dashboard-container {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }

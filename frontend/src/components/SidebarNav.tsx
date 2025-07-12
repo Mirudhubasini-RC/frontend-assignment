@@ -63,7 +63,7 @@ const SidebarNav: React.FC<SidebarProps> = ({ darkMode, isCollapsed, onToggleCol
       </nav>
 
       <div className="bottom">
-        <button className="theme-toggle" onClick={handleLogout}>
+        <button className="logout-button" onClick={handleLogout}>
           <FiLogOut className="icon" />
           {!isCollapsed && <span>Logout</span>}
         </button>
