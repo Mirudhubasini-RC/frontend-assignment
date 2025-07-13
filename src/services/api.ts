@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-// (API Usage + Form)
-const API_BASE_MAIN = 'https://6870b5d37ca4d06b34b7a733.mockapi.io';
+const API_BASE_MAIN = process.env.REACT_APP_API_BASE_MAIN as string;
+const API_BASE_ACTIVITY = process.env.REACT_APP_API_BASE_ACTIVITY as string;
 
-// (User Activity) Used from different email since I lost free trail in first.
-const API_BASE_ACTIVITY = 'https://6870f5337ca4d06b34b8c9fe.mockapi.io';
+console.log("MAIN:", process.env.REACT_APP_API_BASE_MAIN);
+console.log("ACTIVITY:", process.env.REACT_APP_API_BASE_ACTIVITY);
+
 
 // GET: Bar chart usage data
 export const fetchYearlyUsage = () => {
